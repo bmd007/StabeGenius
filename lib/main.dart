@@ -1,3 +1,4 @@
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_html_view/flutter_html_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -81,19 +82,11 @@ buildUI(EpisodePlaylist episodeList, PanelController pc) {
     }).toList(growable: false),
     playbackState: PlaybackState.paused,
     child: new Scaffold(
+      drawer: buildDrawer(),
       appBar: new AppBar(
         backgroundColor: accentColor,
         elevation: 0.0,
         title: new Text('ZigZag'),
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.menu),
-            color: const Color(0xFFDDDDDD),
-            onPressed: () {//todo add drawer with ZigZag, Manoush and Jen pic
-              // . Link to contact us and about us to their web site
-               },
-          ),
-        ],
       ),
       body: new Column(
         children: <Widget>[
@@ -135,3 +128,30 @@ buildUI(EpisodePlaylist episodeList, PanelController pc) {
   );
 }
 
+buildDrawer(){
+  return Drawer(child: ListView(children: <Widget>[
+    FlatButton(
+      padding: EdgeInsets.all(0),
+        onPressed: (){launchURL("https://www.stableg.com/about");},
+        child: Image.network(
+      'https://images.squarespace-cdn'
+        '.com/content/v1/5c92b1817a1fbd4f736a255e/1555970681103-O1PAADOMCNSVQCRJ4RDK/ke17ZwdGBToddI8pDm48kDMCKPUtgBH6VvrO8EwU6dtZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIfFekrTzKa9BP3SZzqJdCR8SqOxTINkHCh5vhvTpoS9Y/SG_anima00%283%29.gif',
+      repeat: ImageRepeat.noRepeat,)
+  ),
+    FlatButton(
+        padding: EdgeInsets.all(0),
+        onPressed: (){launchURL("https://zigzagpod.com/about");},
+  child: Image.network('https://images.squarespace-cdn'
+            '.com/content/v1/5c92b1817a1fbd4f736a255e/1555344817661-8C0CQHC7P726OBEB0EDH/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/_WP_5004C.jpg',
+      repeat: ImageRepeat.noRepeat)
+  ),
+  ]));
+}
+
+Future launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url, forceSafariVC: false, forceWebView: false);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
