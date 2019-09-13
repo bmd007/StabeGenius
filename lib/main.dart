@@ -75,7 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
           episodeList = list;
         });
       });
-      return CircularProgressIndicator();
+      return CircularProgressIndicator(); //todo turn into some beautiful zig
+      // zag  loading
     } else {
       return buildUI(episodeList);
     }
@@ -101,21 +102,21 @@ buildUI(EpisodePlaylist episodeList) {
       appBar: new AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: new IconButton(
-          icon: new Icon(
-            Icons.arrow_back_ios,
-          ),
-          color: const Color(0xFFDDDDDD),
-          onPressed: () {},
-        ),
-        title: new Text(''),
+//        leading: new IconButton(
+//          icon: new Icon(
+//            Icons.arrow_back_ios,
+//          ),
+//          color: const Color(0xFFDDDDDD),
+//          onPressed: () {},
+//        ),
+        title: new Text('ZigZag'),
         actions: <Widget>[
           new IconButton(
-            icon: new Icon(
-              Icons.menu,
-            ),
+            icon: new Icon(Icons.menu),
             color: const Color(0xFFDDDDDD),
-            onPressed: () {},
+            onPressed: () {//todo add drawer with ZigZag, Manoush and Jen pic
+              // . Link to contact us and about us to their web site
+               },
           ),
         ],
       ),
@@ -124,14 +125,9 @@ buildUI(EpisodePlaylist episodeList) {
           // Seek bar
           new Expanded(
             child: new AudioPlaylistComponent(
-              playlistBuilder:
-                  (BuildContext context, Playlist playlist, Widget child) {
-                String albumArtUrl =
-                    episodeList.episodes[playlist.activeIndex].albumArtUrl;
-
-                return new AudioRadialSeekBar(
-                  albumArtUrl: albumArtUrl,
-                );
+              playlistBuilder: (BuildContext context, Playlist playlist, Widget child) {
+                String albumArtUrl = episodeList.episodes[playlist.activeIndex].albumArtUrl;
+                return new AudioRadialSeekBar(albumArtUrl: albumArtUrl,);
               },
             ),
           ),
@@ -335,14 +331,7 @@ class _RadialProgressBarState extends State<RadialProgressBar> {
     // Make room for the painted track, progress, and thumb.  We divide by 2.0
     // because we want to allow flush painting against the track, so we only
     // need to account the thickness outside the track, not inside.
-    final outerThickness = max(
-          widget.trackWidth,
-          max(
-            widget.progressWidth,
-            widget.thumbSize,
-          ),
-        ) /
-        2.0;
+    final outerThickness = max(widget.trackWidth, max(widget.progressWidth, widget.thumbSize)) / 2.0;
     return new EdgeInsets.all(outerThickness);
   }
 

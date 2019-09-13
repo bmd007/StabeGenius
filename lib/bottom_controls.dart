@@ -13,15 +13,12 @@ class BottomControls extends StatelessWidget {
       child: new Material(
         shadowColor: const Color(0x44000000),
         color: accentColor,
-        child: new Padding(
-          padding: const EdgeInsets.only(top: 40.0, bottom: 50.0),
+        child: new Padding(padding: const EdgeInsets.only(top: 40.0, bottom: 50.0),
           child: new Column(
             children: <Widget>[
-              new AudioPlaylistComponent(
-                playlistBuilder: (BuildContext context, Playlist playlist, Widget child) {
+              new AudioPlaylistComponent(playlistBuilder: (BuildContext context, Playlist playlist, Widget child) {
                   final songTitle = episodeList.episodes[playlist.activeIndex].title;
                   final artistName = episodeList.episodes[playlist.activeIndex].artist;
-
                   return new RichText(
                       text: new TextSpan(
                           text: '',
@@ -36,15 +33,15 @@ class BottomControls extends StatelessWidget {
                                 height: 1.5,
                               ),
                             ),
-                            new TextSpan(
-                              text: '${artistName.toUpperCase()}',
-                              style: new TextStyle(
-                                color: Colors.white.withOpacity(0.75),
-                                fontSize: 12.0,
-                                letterSpacing: 3.0,
-                                height: 1.5,
-                              ),
-                            ),
+//                            new TextSpan(
+//                              text: '${artistName.toUpperCase()}',
+//                              style: new TextStyle(
+//                                color: Colors.white.withOpacity(0.75),
+//                                fontSize: 12.0,
+//                                letterSpacing: 3.0,
+//                                height: 1.5,
+//                              ),
+//                            ),
                           ]
                       ),
                     textAlign: TextAlign.center,
