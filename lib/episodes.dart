@@ -15,13 +15,13 @@ class Episode {
   final String audioUrl;
   final String albumArtUrl;
   final String title;
-  final String artist;
+  final String description;
 
   Episode({
     @required this.audioUrl,
     @required this.albumArtUrl,
     @required this.title,
-    @required this.artist,
+    @required this.description,
   });
 
 }
